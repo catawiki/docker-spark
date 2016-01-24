@@ -1,5 +1,5 @@
 master:
-  build: .
+  image: fokkodriesprong/docker-spark
   command: /usr/spark/bin/spark-class org.apache.spark.deploy.master.Master -h master
   hostname: master
   environment:
@@ -24,7 +24,7 @@ master:
     - /tmp/spark-events:/tmp/spark-events
 
 worker:
-  build: .
+  image: fokkodriesprong/docker-spark
   command: /usr/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://master:7077
   hostname: worker
   environment:
@@ -36,7 +36,7 @@ worker:
     - /tmp/spark-events:/tmp/spark-events
 
 history:
-  build: .
+  image: fokkodriesprong/docker-spark
   command: /usr/spark/bin/spark-class org.apache.spark.deploy.history.HistoryServer
   hostname: history
   links:

@@ -3,8 +3,7 @@ MAINTAINER Fokko Driesprong <fokko@driesprong.frl>
 
 RUN apt-get update \
   && apt-get upgrade -y \
-  && apt-get install -y wget git \
-  && rm -rf /var/lib/apt/lists/*
+  && apt-get install -y wget git
 
 # Java
 RUN cd /opt/ \
