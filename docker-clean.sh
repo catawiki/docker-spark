@@ -3,7 +3,7 @@
 # A simple script to clean docker
 
 # Kill running instances
-docker-compose kill
+docker stop $(docker ps -a -q)
 
 # Delete all containers
 docker rm $(docker ps -a -q)
