@@ -31,11 +31,20 @@ RUN git clone https://github.com/apache/spark.git /tmp/spark \
   && cd /tmp/spark \
   && git checkout tags/v1.6.0 \
   && ./dev/change-scala-version.sh 2.11 \
-  && mvn -pl '!examples,!external/twitter,!external/flume,!external/flume-sink,!external/flume-assembly,!external/mqtt,!external/mqtt-assembly' -Dscala-2.11 -DskipTests clean package  \
-  && mkdir -p /usr/spark/ \
+  && mvn -pl \
+   '!graphx,!external/twitter,!external/flume,!external/flume-sink,!external/flume-assembly,!external/mqtt,!external/mqtt-assembly,!external/zeromq,!external/kafka,!external/kafka-assembly,!examples' \
+    -Dscala-2.11 -Dmaven.test.skip -DskipTests clean package  \
+  && mkdir -p /usr/spark/work \
   && mv ./bin/ /usr/spark/bin/ \
+  && mv ./sbin/ /usr/spark/sbin/ \
   && mv ./assembly/ /usr/spark/assembly/ \
   && mv ./lib_managed/ /usr/spark/lib_managed/ \
-  && cd /usr/spark/bin
+  && cd /usr/spark/bin \
+  && rm -rf /tmp/
+
+RUN mkdir -p /usr/spark/work/ \
+  chmod -R 777 /usr/spark/work/
+
+ENV SPARK_MASTER_PORT 7077
 
 CMD /usr/spark/bin/spark-class org.apache.spark.deploy.master.Master

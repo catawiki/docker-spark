@@ -21,6 +21,6 @@ The SparkUI will be running at `http://${YOUR_DOCKER_HOST}:8080` with one worker
     docker exec -it dockerspark_master_1 /bin/bash
     /usr/spark/bin/spark-shell
 
-## license
+## License
 
 Apache 2.0 License
