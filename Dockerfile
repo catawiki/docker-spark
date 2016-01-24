@@ -43,7 +43,7 @@ RUN git clone https://github.com/apache/spark.git /tmp/spark \
   && rm -rf /tmp/
 
 RUN mkdir -p /usr/spark/work/ \
-  chmod -R 777 /usr/spark/work/
+  && chmod -R 777 /usr/spark/work/
 
 ENV SPARK_MASTER_PORT 7077
 
