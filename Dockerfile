@@ -34,6 +34,7 @@ RUN git clone https://github.com/apache/spark.git /tmp/spark \
    '!graphx,!external/twitter,!external/flume,!external/flume-sink,!external/flume-assembly,!external/mqtt,!external/mqtt-assembly,!external/zeromq,!external/kafka,!external/kafka-assembly,!examples' \
     -Dscala-2.11 -Dmaven.test.skip -DskipTests clean package  \
   && mkdir -p /usr/spark/work \
+  && chmod 755 /usr/spark/work \
   && mv ./bin/ /usr/spark/bin/ \
   && mv ./sbin/ /usr/spark/sbin/ \
   && mv ./assembly/ /usr/spark/assembly/ \
