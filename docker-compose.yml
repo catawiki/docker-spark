@@ -39,6 +39,8 @@ history:
   image: fokkodriesprong/docker-spark
   command: /usr/spark/bin/spark-class org.apache.spark.deploy.history.HistoryServer
   hostname: history
+  environment:
+    SPARK_CONF_DIR: /conf
   links:
     - master
   volumes:
