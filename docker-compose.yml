@@ -21,7 +21,8 @@ master:
     - 8080:8080
   volumes:
     - ./conf/master:/conf
-    - /tmp/spark-events:/tmp/spark-events
+  volumes_from:
+    - logfiles
 
 worker:
   image: fokkodriesprong/docker-spark
@@ -33,7 +34,8 @@ worker:
     - master
   volumes:
     - ./conf/worker:/conf
-    - /tmp/spark-events:/tmp/spark-events
+  volumes_from:
+    - logfiles
 
 history:
   image: fokkodriesprong/docker-spark
@@ -47,4 +49,10 @@ history:
     - 18080:18080
   volumes:
     - ./conf/history:/conf
-    - /tmp/spark-events:/tmp/spark-events
+  volumes_from:
+    - logfiles
+
+logfiles:
+  image: ubuntu:14.04
+  volumes:
+    - /tmp/spark-events
