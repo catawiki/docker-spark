@@ -31,10 +31,6 @@ worker:
     SPARK_CONF_DIR: /conf
   links:
     - master
-  expose:
-    - 4040
-  ports:
-    - 4040:4040
   volumes:
     - ./conf/worker:/conf
     - /tmp/spark-events:/tmp/spark-events
