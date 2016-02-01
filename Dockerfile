@@ -3,7 +3,7 @@ MAINTAINER Fokko Driesprong <fokko@driesprong.frl>
 
 RUN apt-get update \
   && apt-get upgrade -y \
-  && apt-get install -y wget git
+  && apt-get install -y wget git libatlas3-base libopenblas-base
 
 # Java
 RUN cd /opt/ \
@@ -12,8 +12,7 @@ RUN cd /opt/ \
   && rm jdk-8u66-linux-x64.tar.gz \
   && update-alternatives --install /usr/bin/java java /opt/jdk1.8.0_66/bin/java 100 \
   && update-alternatives --install /usr/bin/jar jar /opt/jdk1.8.0_66/bin/jar 100 \
-  && update-alternatives --install /usr/bin/javac javac /opt/jdk1.8.0_66/bin/javac 100 \
-  && java -version
+  && update-alternatives --install /usr/bin/javac javac /opt/jdk1.8.0_66/bin/javac 100
 
 # Maven
 RUN cd /opt/ \
@@ -38,9 +37,13 @@ RUN git clone https://github.com/apache/spark.git /tmp/spark \
   && mv ./bin/ /usr/spark/bin/ \
   && mv ./sbin/ /usr/spark/sbin/ \
   && mv ./assembly/ /usr/spark/assembly/ \
+  && mv ./python/ /usr/spark/python/ \
   && mv ./lib_managed/ /usr/spark/lib_managed/ \
   && cd /usr/spark/bin \
   && rm -rf /tmp/
+
+ENV SPARK_HOME /usr/local/spark
+ENV PYTHONPATH $SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.9-src.zip
 
 RUN mkdir -p /usr/spark/work/ \
   && chmod -R 777 /usr/spark/work/
