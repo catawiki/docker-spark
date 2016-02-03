@@ -14,6 +14,8 @@ RUN cd /opt/ \
   && update-alternatives --install /usr/bin/jar jar /opt/jdk1.8.0_66/bin/jar 100 \
   && update-alternatives --install /usr/bin/javac javac /opt/jdk1.8.0_66/bin/javac 100
 
+EXPORT JAVA_HOME /opt/jdk1.8.0_66/
+
 # Maven
 RUN cd /opt/ \
   && wget http://apache.cs.uu.nl/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz \
