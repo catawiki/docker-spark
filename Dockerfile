@@ -3,7 +3,15 @@ MAINTAINER Fokko Driesprong <fokko@driesprong.frl>
 
 RUN apt-get update \
   && apt-get upgrade -y \
-  && apt-get install -y wget git libatlas3-base libopenblas-base
+  && apt-get install -y \
+    wget \
+    git \
+    libatlas3-base \
+    libopenblas-base \
+    python \
+    python3 \
+    python-dev \
+  && apt-get clean
 
 # Java
 RUN cd /opt/ \
