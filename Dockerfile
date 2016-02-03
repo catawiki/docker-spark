@@ -14,8 +14,6 @@ RUN cd /opt/ \
   && update-alternatives --install /usr/bin/jar jar /opt/jdk1.8.0_66/bin/jar 100 \
   && update-alternatives --install /usr/bin/javac javac /opt/jdk1.8.0_66/bin/javac 100
 
-EXPORT JAVA_HOME /opt/jdk1.8.0_66/
-
 # Maven
 RUN cd /opt/ \
   && wget http://apache.cs.uu.nl/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz \
@@ -44,7 +42,7 @@ RUN git clone https://github.com/apache/spark.git /tmp/spark \
   && cd /usr/spark/bin \
   && rm -rf /tmp/
 
-ENV SPARK_HOME /usr/local/spark
+ENV SPARK_HOME /usr/spark
 ENV PYTHONPATH $SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.9-src.zip
 
 RUN mkdir -p /usr/spark/work/ \
