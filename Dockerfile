@@ -1,5 +1,5 @@
 FROM ubuntu:14.04
-MAINTAINER Fokko Driesprong <fokko@catawiki.nl>
+MAINTAINER Fokko Driesprong <f.driesprong@catawiki.nl>
 
 RUN apt-get update \
   && apt-get upgrade -y \
