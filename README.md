@@ -6,7 +6,7 @@ Some of the projects are skipped at the Maven build process to make the containe
 
 ## Usage
 
-The docker-compose contains three configurations: `master`, `worker` and `history`. Where `master` is the master-node which delegates the task over the worker nodes. The `worker` which gets work assigned from the master and does the actual processing. At last the `history` which solely runs the history server to keep track of the jobs when finished.
+The docker-compose contains three configurations: `master`, `worker` and `history` and a data-container. Where `master` is the master-node which delegates the task over the worker nodes. The `worker` which gets work assigned from the master and does the actual processing. At last the `history` which solely runs the history server to keep track of the jobs when finished.
 
 To create a standalone cluster with [docker-compose](http://docs.docker.com/compose):
 
@@ -20,6 +20,8 @@ The SparkUI will be running at `http://${YOUR_DOCKER_HOST}:8080` with one worker
 
     docker exec -it dockerspark_master_1 /bin/bash
     /usr/spark/bin/spark-shell
+
+If you are using OSX, don't forget to point to the Docker VM ip, `192.168.99.100` by default.
 
 ## License
 
