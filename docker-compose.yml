@@ -1,10 +1,10 @@
 master:
-  image: fokkodriesprong/docker-spark
-  command: /usr/spark/bin/spark-class org.apache.spark.deploy.master.Master -h biadhoc.catawiki.net
-  hostname: biadhoc.catawiki.net
+  image: catawiki/docker-spark
+  command: /usr/spark/bin/spark-class org.apache.spark.deploy.master.Master -h master
+  hostname: master
   environment:
     SPARK_CONF_DIR: /conf
-    SPARK_MASTER_IP: biadhoc.catawiki.net
+    SPARK_MASTER_IP: master
   expose:
     - 7001
     - 7002
@@ -25,7 +25,7 @@ master:
     - logfiles
 
 worker:
-  image: fokkodriesprong/docker-spark
+  image: catawiki/docker-spark
   command: /usr/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://master:7077
   hostname: worker
   environment:
@@ -38,7 +38,7 @@ worker:
     - logfiles
 
 history:
-  image: fokkodriesprong/docker-spark
+  image: catawiki/docker-spark
   command: /usr/spark/bin/spark-class org.apache.spark.deploy.history.HistoryServer
   hostname: history
   environment:
