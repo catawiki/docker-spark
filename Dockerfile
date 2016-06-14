@@ -35,7 +35,7 @@ ENV MAVEN_OPTS -Xmx2048m
 # SPARK
 RUN git clone https://github.com/apache/spark.git /tmp/spark \
   && cd /tmp/spark \
-  && git checkout tags/v1.6.0 \
+  && git checkout tags/v1.6.1 \
   && ./dev/change-scala-version.sh 2.11 \
   && mvn -pl \
    '!graphx,!external/twitter,!external/flume,!external/flume-sink,!external/flume-assembly,!external/mqtt,!external/mqtt-assembly,!external/zeromq,!external/kafka,!external/kafka-assembly,!examples' \
